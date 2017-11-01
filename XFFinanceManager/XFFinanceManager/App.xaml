@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:XFFinanceManager.CustomRenderer"
+             x:Class="XFFinanceManager.App">
+	<Application.Resources>
+
+		<!-- Application resource dictionary -->
+        <ResourceDictionary>
+
+            <Color x:Key="backgroundColor">#8190A5</Color>
+            <x:Double x:Key="fontSize">24</x:Double>
+
+            <Style x:Key="roundedBoxViewStyle" TargetType="controls:RoundedBoxView">
+                <Setter Property="CornerRadius" Value="{DynamicResource fontSize}" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource backgroundColor}" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                
+            </Style>
+        </ResourceDictionary>
+
+	</Application.Resources>
+</Application>

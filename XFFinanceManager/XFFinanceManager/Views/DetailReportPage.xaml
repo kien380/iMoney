@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:SegmentedControl.FormsPlugin.Abstractions;assembly=SegmentedControl.FormsPlugin.Abstractions"
+             xmlns:converters="clr-namespace:XFFinanceManager.Converters"
+             xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             xmlns:language="clr-namespace:XFFinanceManager.Helpers"
+             x:Class="XFFinanceManager.Views.DetailReportPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ColorTypeConverter x:Key="colorTypeConverter"/>
+            <converters:IconIncomeConverter x:Key="iconIncomeConverter"/>
+            <converters:IconExpenseConverter x:Key="iconExpenseConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="9*"/>
+            </Grid.RowDefinitions>
+
+            <controls:SegmentedControl x:Name="SegControl"
+                                       Grid.Row="0"
+                                       Margin="4"
+                                       SelectedSegment="{Binding SelectedSegment}">
+                <controls:SegmentedControl.Children>
+                    <controls:SegmentedControlOption Text="{language:Translate Today}" />
+                    <controls:SegmentedControlOption Text="{language:Translate ThisWeek}" />
+                    <controls:SegmentedControlOption Text="{language:Translate ThisMonth}" />
+                    <controls:SegmentedControlOption Text="{language:Translate Period}" />
+                </controls:SegmentedControl.Children>
+            </controls:SegmentedControl>
+
+            <forms:ChartView VerticalOptions="FillAndExpand"
+                             Margin="16,0,16,0"
+                             Grid.Row="1"
+                             x:Name="chartView"/>
+
+            <Label Text="09/2017"
+                   FontSize="16"
+                   Grid.Row="2"
+                   x:Name="timeLabel"
+                   TextColor="#47525E"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="Center"/>
+
+            <ListView Grid.Row="3"
+                      RowHeight="60"
+                      SeparatorVisibility="None"
+                      x:Name="financeManagerListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.Column="0"
+                                       HeightRequest="28"
+                                       WidthRequest="28"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="CenterAndExpand"
+                                       Aspect="AspectFit">
+                                    <Image.Triggers>
+                                        <DataTrigger TargetType="Image" Binding="{Binding Type}" Value="1">
+                                            <Setter Property="Source" Value="{Binding Category, Converter={StaticResource iconIncomeConverter}}"/>
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Image" Binding="{Binding Type}" Value="2">
+                                            <Setter Property="Source" Value="{Binding Category, Converter={StaticResource iconExpenseConverter}}"/>
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
+
+                                <StackLayout Grid.Column="1"
+                                             Padding="2"
+                                             Spacing="0">
+                                    <Label Text="{Binding Name}"
+                                           FontSize="16"
+                                           TextColor="#47525E"
+                                           VerticalOptions="CenterAndExpand"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}"
+                                           TextColor="#8190A5"
+                                           VerticalOptions="CenterAndExpand"/>
+                                </StackLayout>
+
+                                <Label Text="{Binding Money, StringFormat='{0:0,0}'}"
+                                       Grid.Column="2"
+                                       Margin="0,0,16,0"
+                                       FontSize="16"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="End"
+                                       FontAttributes="Bold"
+                                       TextColor="{Binding Type, Converter={StaticResource colorTypeConverter}}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!--<DatePicker IsVisible="False"
+                        x:Name="datePicker"/>-->
+        </Grid>
+        
+    </ContentPage.Content>
+</ContentPage>

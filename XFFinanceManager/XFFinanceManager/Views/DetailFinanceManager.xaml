@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XFFinanceManager.Views.DetailFinanceManager"
+             xmlns:converter="clr-namespace:XFFinanceManager.Converters"
+             xmlns:behaviors="clr-namespace:XFFinanceManager.Helper"
+             xmlns:language="clr-namespace:XFFinanceManager.Helpers">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ColorTypeConverter x:Key="colorTypeConverter"/>
+            <converter:IncomeCategoryEnumConverter x:Key="incomeCategoryEnumConverter"/>
+            <converter:ExpenseCategoryEnumConverter x:Key="expenseCategoryEnumConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Padding="10"
+                     VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand">
+            <Entry Text="{Binding Money}"
+                   Keyboard="Numeric"
+                   TextColor="{Binding Type, Converter={StaticResource colorTypeConverter}}"
+                   x:Name="entryMoney"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   Placeholder="{language:Translate InputMoney}">
+                <Entry.Behaviors>
+                    <behaviors:EntryLengthValidatorBehavior MaxLength="8"/>
+                </Entry.Behaviors>
+            </Entry>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="{language:Translate Name}"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Column="0"
+                       Grid.Row="0"/>
+                <Entry Text="{Binding Name}"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Column="1"
+                       Grid.Row="0"
+                       x:Name="entryName"
+                       Placeholder="{language:Translate InputName}">
+                    <Entry.Behaviors>
+                        <behaviors:EntryLengthValidatorBehavior MaxLength="24"/>
+                    </Entry.Behaviors>
+                </Entry>
+                <Label Text="{language:Translate Category}"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Column="0"
+                       Grid.Row="1"/>
+                <Picker Title="{language:Translate Category}"
+                        VerticalOptions="CenterAndExpand"
+                        SelectedIndex="{Binding Category}"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        x:Name="pickerCategory">
+                    <!--<Picker.Triggers>
+                        <DataTrigger TargetType="Picker" Binding="{Binding Type}" Value="1">
+                            <Setter Property="SelectedIndex" Value="{Binding Category, Converter={StaticResource incomeCategoryEnumConverter}}"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Picker" Binding="{Binding Type}" Value="2">
+                            <Setter Property="SelectedIndex" Value="{Binding Category, Converter={StaticResource expenseCategoryEnumConverter}}"/>
+                        </DataTrigger>
+                    </Picker.Triggers>-->
+                </Picker>
+                <Image Source="ic_drop_down"
+                       Grid.Row="1"
+                       Grid.ColumnSpan="2"
+                       WidthRequest="12"
+                       HeightRequest="12"
+                       Margin="0,0,8,0"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="End"/>
+                <Label Text="{language:Translate Note}"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Column="0"
+                       Grid.Row="2"/>
+                <Entry Text="{Binding Note}"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Column="1"
+                       Grid.Row="2"
+                       x:Name="entryNote"
+                       Placeholder="{language:Translate InputNote}">
+                    <Entry.Behaviors>
+                        <behaviors:EntryLengthValidatorBehavior MaxLength="24"/>
+                    </Entry.Behaviors>
+                </Entry>
+                <Label Text="{language:Translate Date}"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Column="0"
+                       Grid.Row="3"/>
+                <DatePicker Date="{Binding Date}"
+                            VerticalOptions="CenterAndExpand"
+                            Grid.Column="1"
+                            Grid.Row="3"
+                            x:Name="datePicker"
+                            Format="dd-MM-yyyy"/>
+            </Grid>
+
+            <Button Text="{language:Translate Save}"
+                    BorderRadius="10"
+                    Clicked="OnSaveButton_Clicked"
+                    BackgroundColor="#00A6FF"
+                    TextColor="White"/>
+            <Button Text="{language:Translate Delete}"
+                    BorderRadius="10"
+                    Clicked="OnDeleteButton_Clicked"
+                    BackgroundColor="#F95F62"
+                    TextColor="White"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XFFinanceManager.Views.TestPage"
+             xmlns:converters="clr-namespace:XFFinanceManager.Converters"
+             xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             Title="Test">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ColorItemListViewConverter x:Key="colorItemListViewConverter"/>
+            <converters:ColorTextItemListViewConverter x:Key="colorTextItemListViewConverter"/>
+            <converters:IconIncomeConverter x:Key="iconIncomeConverter"/>
+            <converters:IconExpenseConverter x:Key="iconExpenseConverter"/>
+            <converters:IncomeCategoryEnumConverter x:Key="incomeCategoryEnumConverter"/>
+            <converters:ExpenseCategoryEnumConverter x:Key="expenseCategoryEnumConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Padding="12"
+                  Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0"
+                                 Spacing="0">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="IncomeDetail_Clicked"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="INCOME"
+                               FontSize="10"
+                               HorizontalOptions="CenterAndExpand"
+                               TextColor="#00A6FF"/>
+                    <Label Text="2.500.000"
+                           x:Name="incomeLabel"
+                               HorizontalOptions="CenterAndExpand"
+                               TextColor="#77D353"
+                               FontAttributes="Bold"/>
+                </StackLayout>
+                <StackLayout Grid.Column="1"
+                                 Spacing="0">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ExpenseDetail_Clicked"/>
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="EXPENSE"
+                               FontSize="10"
+                               HorizontalOptions="CenterAndExpand"
+                               TextColor="#00A6FF"/>
+                    <Label Text="1.500.000"
+                           x:Name="expenseLabel"
+                               HorizontalOptions="CenterAndExpand"
+                               TextColor="#F95F62"
+                               FontAttributes="Bold"/>
+                </StackLayout>
+                <StackLayout Grid.Column="2"
+                                 Spacing="0">
+                    <Label Text="BALANCE"
+                               FontSize="10"
+                               HorizontalOptions="CenterAndExpand"
+                               TextColor="#00A6FF"/>
+                    <Label Text="1.000.000"
+                           x:Name="balanceLabel"
+                               HorizontalOptions="CenterAndExpand"
+                               TextColor="#343F4B"
+                               FontAttributes="Bold"/>
+                </StackLayout>
+            </Grid>
+
+            <!--<Image x:Name="iconImage">
+                <Image.Triggers>
+                    <DataTrigger TargetType="Image" Binding="{Binding Type}" Value="1">
+                        <Setter Property="Source" Value="{Binding Category, Converter={StaticResource iconIncomeConverter}}"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Image" Binding="{Binding Type}" Value="2">
+                        <Setter Property="Source" Value="{Binding Category, Converter={StaticResource iconExpenseConverter}}"/>
+                    </DataTrigger>
+                </Image.Triggers>
+            </Image>-->
+
+            <!--<ListView>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Type}" Value="1">
+                                <Setter TargetName="iconImage" Property="Source" Value="{Binding Category, Converter={StaticResource iconIncomeConverter}}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Type}" Value="2">
+                                <Setter TargetName="iconImage" Property="Source" Value="{Binding Category, Converter={StaticResource iconExpenseConverter}}"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+
+            <!--<Label Text="{Binding Category, Converter={StaticResource expenseCategoryEnumConverter}}"/>-->
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <controls:CircleImage Source="ic_take_picture"
+                                      Grid.Row="0"
+                                      Grid.Column="0"
+                                      Grid.RowSpan="2"
+                                      BorderColor="Gray"
+                                      BorderThickness="2"
+                                      VerticalOptions="CenterAndExpand"
+                                      Aspect="AspectFit"
+                                      WidthRequest="36"
+                                      HeightRequest="36"/>
+                
+                <Label Grid.Row="0"
+                       Grid.Column="1"
+                       Text="{Binding Name}"
+                       TextColor="#47525E"
+                       FontSize="18"
+                       VerticalOptions="CenterAndExpand"/>
+
+                <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Text="{Binding Category}"
+                       x:Name="labelCategory"
+                       TextColor="#8190A5"
+                       FontSize="16"
+                       VerticalOptions="CenterAndExpand"/>
+
+                <Label Grid.Row="0"
+                       Grid.Column="2"
+                       Text="{Binding Money, StringFormat='{0:0,0}'}"
+                       TextColor="#F95F62"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       HorizontalOptions="End"
+                       VerticalOptions="CenterAndExpand"/>
+
+                <Label Grid.Row="1"
+                       Grid.Column="2"
+                       Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}"
+                       TextColor="#8190A5"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="End"
+                       FontSize="16"/>
+            </Grid>
+
+            <forms:ChartView VerticalOptions="FillAndExpand"
+                             Margin="16,0,16,0"
+                             Grid.Row="1"
+                             x:Name="chartView"/>
+
+            <Grid Grid.Row="2">
+                <Button Text="Income detail"
+                        BackgroundColor="#5A6978"
+                        TextColor="White"
+                            FontSize="10"
+                            Grid.Column="0"
+                            Margin="16,0,8,0"/>
+
+                <Button Text="Expense detail"
+                        BackgroundColor="#5A6978"
+                        TextColor="White"
+                            Grid.Column="1"
+                            FontSize="10"
+                            Margin="16,0,8,0"/>
+            </Grid>
+
+            <ListView Grid.Row="3"
+                      RowHeight="60"
+                      SeparatorVisibility="None"
+                      ItemsSource="{Binding Items}"
+                      x:Name="listViewTest">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid ColumnSpacing="0"
+                                  BackgroundColor="{Binding Number, Converter={StaticResource colorItemListViewConverter}}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Image Grid.Column="0"
+                                       HeightRequest="32"
+                                       WidthRequest="32"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="CenterAndExpand"
+                                       Aspect="AspectFit"
+                                       Source="ic_take_picture"/>
+
+                                <StackLayout Grid.Column="1"
+                                             Margin="16,0,0,0"
+                                             Spacing="0"
+                                             VerticalOptions="FillAndExpand"
+                                             Padding="2">
+                                    <Label Text="{Binding Title}"
+                                           FontSize="16"
+                                           TextColor="#47525E"
+                                           VerticalOptions="CenterAndExpand"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding Detail}"
+                                           TextColor="#8190A5"
+                                           VerticalOptions="CenterAndExpand"/>
+                                </StackLayout>
+
+                                <Label Text="{Binding Number}"
+                                       Grid.Column="2"
+                                       FontSize="16"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="Center"
+                                       FontAttributes="Bold"
+                                       TextColor="{Binding Number, Converter={StaticResource colorTextItemListViewConverter}}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

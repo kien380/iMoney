@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseContentPage  xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        x:Class="XFFinanceManager.Views.IncomePage"
+                        xmlns:pages="clr-namespace:XFFinanceManager.Views"
+                        xmlns:converters="clr-namespace:XFFinanceManager.Converters"
+                        xmlns:language="clr-namespace:XFFinanceManager.Helpers">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:IconIncomeConverter x:Key="iconIncomeConverter"/>
+            <converters:IncomeCategoryEnumConverter x:Key="incomeCategoryEnumConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>  
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_add"
+                     Clicked="AddNewItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            <SearchBar x:Name="searchBar"
+                       Placeholder="{language:Translate Search}"
+                       TextChanged="searchBar_TextChanged"
+                       BackgroundColor="White"/>
+
+            <Grid VerticalOptions="FillAndExpand"
+                  HorizontalOptions="FillAndExpand">
+                <ListView x:Name="financeManagerListView"
+                          ItemSelected="financeManagerListView_ItemSelected"
+                          RowHeight="76"
+                          SeparatorVisibility="None"
+                          BackgroundColor="Transparent"
+                          HorizontalOptions="FillAndExpand"
+                          VerticalOptions="FillAndExpand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Padding="2"
+                                       Margin="4,2"
+                                       OutlineColor="Teal"
+                                       CornerRadius="8">
+                                      <Frame.HasShadow>
+                                          <OnPlatform x:TypeArguments="x:Boolean"
+                                                      iOS="false"
+                                                      Android="true"/>
+                                      </Frame.HasShadow>
+                                      <Grid BackgroundColor="White">
+                                        <Grid.ColumnDefinitions>
+                                          <ColumnDefinition Width="*"/>
+                                          <ColumnDefinition Width="2*"/>
+                                          <ColumnDefinition Width="2*"/>
+                                          <ColumnDefinition Width="12"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding Category, Converter={StaticResource iconIncomeConverter}}"
+                                                              VerticalOptions="CenterAndExpand"
+                                                              Grid.Row="0"
+                                                              Grid.Column="0"
+                                                              Grid.RowSpan="2"
+                                                              Aspect="AspectFit"
+                                                              Margin="5,0,0,0"
+                                                              WidthRequest="32"
+                                                              HeightRequest="32"/>
+
+                                        <Label Grid.Row="0"
+                                               Grid.Column="1"
+                                               Text="{Binding Name}"
+                                               TextColor="#47525E"
+                                               FontSize="18"
+                                               VerticalOptions="CenterAndExpand"/>
+
+                                        <Label Grid.Row="1"
+                                               Grid.Column="1"
+                                               Text="{Binding Category, Converter={StaticResource incomeCategoryEnumConverter}}"
+                                               TextColor="#8190A5"
+                                               FontSize="16"
+                                               VerticalOptions="CenterAndExpand"/>
+
+                                        <Label Grid.Row="0"
+                                               Grid.Column="2"
+                                               Text="{Binding Money, StringFormat='{0:0,0}'}"
+                                               TextColor="#77D353"
+                                               FontSize="18"
+                                               FontAttributes="Bold"
+                                               HorizontalOptions="End"
+                                               VerticalOptions="CenterAndExpand"/>
+
+                                        <Label Grid.Row="1"
+                                               Grid.Column="2"
+                                               Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}"
+                                               TextColor="#8190A5"
+                                               VerticalOptions="CenterAndExpand"
+                                               HorizontalOptions="End"
+                                               FontSize="16"/>
+                                        
+                                         <Image VerticalOptions="CenterAndExpand"
+                                                HeightRequest="12"
+                                                WidthRequest="12"
+                                                Aspect="AspectFill"
+                                                Source="ic_next"
+                                                HorizontalOptions="Center"
+                                                Grid.Column="3"
+                                                Grid.RowSpan="2"/>
+                                      </Grid>
+                                    </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:BaseContentPage>

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XFFinanceManager.Views.SettingPageTest"
+             Title="Settings">
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            <ScrollView>
+                <Grid Padding="12">
+                    <Label Text="Filter"
+                           Grid.Column="0"
+                           Grid.Row="0"/>
+                    <Picker Grid.Column="1"
+                            Grid.Row="0"
+                            Title="Filter list"
+                            SelectedIndexChanged="filterPicker_SelectedIndexChanged"
+                            x:Name="filterPicker"
+                            HorizontalOptions="End"/>
+                    <DatePicker Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                IsVisible="False"
+                                HorizontalOptions="Center"/>
+                    <Picker Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            IsVisible="False"
+                            HorizontalOptions="Center"/>
+                    <Entry Grid.Row="1"
+                           Grid.Column="0"
+                           IsVisible="False"/>
+                    <Entry Grid.Row="1"
+                           Grid.Column="1"
+                           IsVisible="False"/>
+                    <StackLayout Spacing="0"/>
+
+                    <Label Text="Sort"
+                           Grid.Column="0"
+                           Grid.Row="2"/>
+                    <Picker Grid.Column="1"
+                            Grid.Row="2"
+                            SelectedIndexChanged="sortPicker_SelectedIndexChanged"
+                            Title="Sort list"
+                            x:Name="sortPicker"
+                            HorizontalOptions="End"/>
+                    <Picker Grid.Row="3"
+                            Grid.ColumnSpan="2"
+                            IsVisible="False"
+                            HorizontalOptions="Center"/>
+
+                    <Image VerticalOptions="CenterAndExpand"
+                           HeightRequest="24"
+                           WidthRequest="24"
+                           Source="ic_next"
+                           Aspect="AspectFill"
+                           HorizontalOptions="Center"
+                           Grid.Column="3"
+                           Grid.RowSpan="2"/>
+
+                    <Frame OutlineColor="Teal">
+                        <Frame.HasShadow>
+                            <OnPlatform x:TypeArguments="x:Boolean"
+                                        iOS="false"
+                                        Android="true"/>
+                        </Frame.HasShadow>
+                    </Frame>
+
+                    <Label Text="Language"
+                           Grid.Column="0"
+                           Grid.Row="4"/>
+                    <Picker Grid.Column="1"
+                            Grid.Row="4"
+                            SelectedIndexChanged="languagePicker_SelectedIndexChanged"
+                            Title="Language list"
+                            x:Name="languagePicker"
+                            HorizontalOptions="End"/>
+                </Grid>
+            </ScrollView>
+
+            <Button Text="Upload All"
+                    BackgroundColor="Gray"
+                    TextColor="White"
+                    VerticalOptions="EndAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
