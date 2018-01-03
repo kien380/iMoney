@@ -276,6 +276,9 @@
   <data name="Period" xml:space="preserve">
     <value>Period</value>
   </data>
+  <data name="PleaseEnterUsernameAndPassword" xml:space="preserve">
+    <value>Please enter Username and Password</value>
+  </data>
   <data name="RealEstate" xml:space="preserve">
     <value>Real estate</value>
   </data>
@@ -335,6 +338,9 @@
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
+  </data>
+  <data name="UsernameOrPasswordIsInvalid" xml:space="preserve">
+    <value>Username or Password is invalid</value>
   </data>
   <data name="Vietnam" xml:space="preserve">
     <value>Vietnam</value>

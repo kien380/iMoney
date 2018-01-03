@@ -539,6 +539,15 @@ namespace XFFinanceManager.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter Username and Password.
+        /// </summary>
+        internal static string PleaseEnterUsernameAndPassword {
+            get {
+                return ResourceManager.GetString("PleaseEnterUsernameAndPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Real estate.
         /// </summary>
         internal static string RealEstate {
@@ -715,6 +724,15 @@ namespace XFFinanceManager.Resources {
         internal static string Username {
             get {
                 return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username or Password is invalid.
+        /// </summary>
+        internal static string UsernameOrPasswordIsInvalid {
+            get {
+                return ResourceManager.GetString("UsernameOrPasswordIsInvalid", resourceCulture);
             }
         }
         
