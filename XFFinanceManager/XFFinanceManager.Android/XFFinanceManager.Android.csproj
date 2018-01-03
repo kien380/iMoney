@@ -306,6 +306,7 @@
     <AndroidResource Include="Resources\drawable\expense_home.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_next.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_drop_down.png" />
+    <AndroidResource Include="Resources\drawable\ic_launcher.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
