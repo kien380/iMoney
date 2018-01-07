@@ -58,7 +58,8 @@ namespace XFFinanceManager.Views
             var keyword = searchBar.Text;
 
             financeManagerListView.ItemsSource =
-                App.Database.GetFinanceManagerSearchByName(keyword);
+                App.Database.GetFinanceManagerSearchByName(keyword)
+                    .Where(fm => fm.Type == 1).ToList();
         }
     }
 }

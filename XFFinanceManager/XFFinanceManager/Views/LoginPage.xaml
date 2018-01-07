@@ -19,18 +19,21 @@
                         FontSize="40" />
 
                 <StackLayout VerticalOptions="CenterAndExpand">
-                    <controls:ImageEntry TextColor="White" 
-                                     PlaceholderColor="{StaticResource primary}" 
-                                     Image="user" 
-                                     Placeholder="{language:Translate Username}"
-                                     x:Name="emailLabel"
-                                     HorizontalOptions="FillAndExpand"/>
-                    <controls:ImageEntry TextColor="White" 
-                                     PlaceholderColor="{StaticResource primary}"  
-                                     Image="password" 
-                                     Placeholder="{language:Translate Password}"
-                                     IsPassword="True"
-                                     HorizontalOptions="FillAndExpand"/>
+                    <controls:ImageEntry
+                        TextColor="White"
+                        PlaceholderColor="{StaticResource primary}"
+                        Image="user"
+                        Placeholder="{language:Translate Username}"
+                        x:Name="emailEntry"
+                        HorizontalOptions="FillAndExpand" />
+                    <controls:ImageEntry
+                        x:Name="passwordEntry"
+                        TextColor="White"
+                        PlaceholderColor="{StaticResource primary}"
+                        Image="password"
+                        Placeholder="{language:Translate Password}"
+                        IsPassword="True"
+                        HorizontalOptions="FillAndExpand" />
 
                     <Button HeightRequest="50" 
                             Margin="0,12"

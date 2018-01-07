@@ -276,6 +276,9 @@
   <data name="Period" xml:space="preserve">
     <value>Khoảng</value>
   </data>
+  <data name="PleaseEnterUsernameAndPassword" xml:space="preserve">
+    <value>Bạn cần điền Tên đăng nhập và Mật khẩu</value>
+  </data>
   <data name="RealEstate" xml:space="preserve">
     <value>Bất động sản</value>
   </data>
@@ -335,6 +338,9 @@
   </data>
   <data name="Username" xml:space="preserve">
     <value>Tên đăng nhập</value>
+  </data>
+  <data name="UsernameOrPasswordIsInvalid" xml:space="preserve">
+    <value>Tên đăng nhập hoặc mật khẩu không đúng.</value>
   </data>
   <data name="Vietnam" xml:space="preserve">
     <value>Việt Nam</value>
